@@ -75,7 +75,7 @@
         <div class="container px-5 my-5">
             <div class="card text-center p-3">
                 <h1 class="fw-bolder animate__animated animate__bounceIn">View the Code</h1>
-                <p class="lead fw-normal text-muted mb-0">A simple way to view how this program was written.</p>
+                <p class="lead fw-normal text-muted mb-0">A simple way to see how this program was written.</p>
             </div>
 
             <hr>
@@ -83,23 +83,43 @@
             <div class="row row-cols-1 gx-5">
                 <!-- Code Accordion 1-->
                 <div class="col col-md-8">                   
-                    <h2 class="fw-bolder mb-3">JavaScript, HTML, & CSS</h2>
+                    <h2 class="fw-bolder mb-3">JavaScript Functions</h2>
                     <div class="accordion mb-5" id="accordionExample">
                         <div class="accordion-item">
-                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">JavaScript</button></h3>
+                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                function getNumbers()
+                            </button></h3>
                             <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     
                                     <pre class="line-numbers">
                                         <code class="language-javascript">
-                                            //Get starting values from the DOM
-                                            //Controller function
-                                            function displayMessage(){
-                                                let msg = "";
                                             
-                                                msg = document.getElementById("message").value;
+                                            function getNumbers(){
+
+                                                let startValue = 0;
+                                                let endValue = 100;
                                             
-                                                Swal.fire(msg);
+                                                // Get numbers from the UI
+                                                startValue = document.getElementById("startValue").value;
+                                                endValue = document.getElementById("endValue").value;
+                                            
+                                                // Turn potential decimal numbers to whole numbers
+                                                startValue = parseInt(startValue);
+                                                endValue = parseInt(endValue);
+                                            
+                                                // Check if input are numbers
+                                                if (Number.isInteger(startValue) 
+                                                    && Number.isInteger(endValue)) {                                                {
+                                            
+                                                    // Get all the numbers from start to end value
+                                                    let numbers = generateNumbers(startValue, endValue);
+                                                    // Display the numbers on the page
+                                                    displayNumbers(numbers)
+                                            
+                                                } else {
+                                                            
+                                                }
                                             }
                                             
                                         </code>
@@ -109,20 +129,21 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">HTML 5</button></h3>
+                            <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                function generateNumbers()
+                            </button></h3>
                             <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     
                                     <pre class="line-numbers">
                                         <code class="language-javascript">
-                                            //Get starting values from the DOM
-                                            //Controller function
-                                            function displayMessage(){
-                                                let msg = "";
                                             
-                                                msg = document.getElementById("message").value;
-                                            
-                                                Swal.fire(msg);
+                                            function generateNumbers(startValue, endValue){
+                                                let numbers = [];
+                                                for (let i = startValue; i <= endValue; i++) {
+                                                    numbers.push(i);      
+                                                }
+                                                return numbers;
                                             }
                                             
                                         </code>
@@ -132,20 +153,46 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">CSS 3</button></h3>
+                            <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                function displayNumbers()
+                            </button></h3>
                             <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     
                                     <pre class="line-numbers">
                                         <code class="language-javascript">
-                                            //Get starting values from the DOM
-                                            //Controller function
-                                            function displayMessage(){
-                                                let msg = "";
                                             
-                                                msg = document.getElementById("message").value;
+                                            function displayNumbers(numbers){
+
+                                                // First value is found at index 0 in the array
+                                                let startValue = numbers[0];
                                             
-                                                Swal.fire(msg);
+                                                // Length of the array
+                                                let endValue = numbers.length;
+                                            
+                                                let tableBody = document.getElementById("results");
+                                            
+                                                // Clear out previous rows
+                                                tableBody.innerHTML = "";
+                                            
+                                                for (let index = 0; index < endValue; index++) {
+                                                    
+                                                    let tableROw = "";
+                                            
+                                                    // Get the value of the index, 
+                                                    // because the index position does not equal
+                                                    // the variable being held there.
+                                                    let number = numbers[index];
+                                            
+                                                    if (number % 2 == 0) {
+                                                        // The number is even
+                                                        tableRow = `<tr><td class="numberEven">${number}</td></tr>`;
+                                                    } else {
+                                                        // The number is odd
+                                                        tableRow = `<tr><td>${number}</td></tr>`;
+                                                    }
+                                                    tableBody.innerHTML += tableRow;        
+                                                }
                                             }
                                             
                                         </code>
@@ -163,9 +210,13 @@
                                 <div class="text-center">
                                     <div class="h6">Have more questions?</div>
                                     <p class="mb-4">
-                                        
+                                        Get in touch through my website!
                                     </p>
-                                    <div class="h6">Contact Me!</div>
+                                    <div class="d-flex justify-content-center">
+                                        <a type="button" href="https://helloshyann.com/#contact" target="_blank" class="btn hvr-pulse-grow btn-outline-dark">
+                                            Contact Me
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
