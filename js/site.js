@@ -26,6 +26,7 @@ function getNumbers(){
             icon: "error",
             confirmButtonText: "OK",
             confirmButtonColor: "#6c6fe5",
+            focusConfirm: false,
             showCloseButton:true,
           });;
     }
